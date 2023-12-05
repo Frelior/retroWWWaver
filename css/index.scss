@@ -1,0 +1,116 @@
+@import url(./modern-reset.css);
+
+:root{
+    --dark: rgb(9, 9, 9);
+    --sizeIndex: calc(1vw + 1vh);
+    --animation: all 500ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+}
+
+@font-face {
+    font-family: raleway_m;
+    src: url(../assets/fonts/raleway-v22-cyrillic-300.woff2);
+    font-weight: 300;
+}
+@font-face {
+    font-family: raleway_m;
+    src: url(../assets/fonts/raleway-v22-cyrillic-900.woff2);
+    font-weight: 900;
+}
+
+body, html{
+    background-color: var(--dark);
+    color: white;
+    width: 100%;
+    height: 100%;
+    font-family: raleway_m, sans-serif;
+    overflow: hidden;
+    line-height: 1.8;
+}
+
+.slider{
+    height: 100%;
+    transform: rotate(15deg);
+    overflow: visible;
+    top: 15vh;
+    // border: 3px solid red;
+    will-change: transform;
+}
+
+.slider__item{
+    max-height: 75vh;  
+    width: 20%;
+    overflow: hidden;
+    // width: 100%; 
+    position: relative;
+    cursor: pointer;
+    transition: transform 500ms cubic-bezier(0.215, 0.610, 0.355, 1.000), box-shadow 500ms cubic-bezier(0.215, 0.610, 0.355, 1.000) !important;
+    &.opened{
+        transform:rotate(-15deg) scale(1.3);
+        box-shadow: rgb(0 0 0 / .5) 0 0 0 3000px ;
+        z-index: 2;
+    }
+}
+.slider__img{
+    height: 100%;
+    width: 300%;
+    background-size: cover;
+    background-position: bottom;
+    left: -100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    transition: var(--animation) !important;
+    // will-change: transform;
+}
+.siler__wrapper{
+    transition: var(--animation) !important;
+}
+
+
+.slider_bg{
+    user-select: none;
+    pointer-events: none;
+    z-index: 0;
+    transform: rotate(5deg)!important;
+    border: 1px solid red;
+    top: -90vh;
+    left: -20vh;
+    opacity: 20%;
+    filter: blur(120px) saturate(10);
+    .slider__item{
+        width: 18% !important;
+        max-height: 100%; 
+    }
+}
+
+
+.description{
+    position: absolute;
+    font-size: calc(var(--sizeIndex) * 0.8);
+    top: 20vh;
+    left: 8vw;
+    max-width: 24vw;
+    transition: opacity 0.5s, transform 0.5s;
+    p{
+        opacity: .9;
+        transition: transform 1s;
+        transition-duration: 2s;
+
+    }
+    &.hidden{
+        opacity: 0;
+        transform: translateY(5vh);
+        p{
+            transform: translateY(3vh); 
+        }
+    }
+}
+
+.logo{
+    font-size: calc(var(--sizeIndex) * 3.6);
+    // font-weight: normal;
+    display: inline-block;
+    background: linear-gradient(45deg, darkMagenta, Tomato, Violet);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+}
